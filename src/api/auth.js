@@ -1,7 +1,7 @@
 import { post } from "axios";
 import getFormData from "../utils/objToFormData";
 
-const BASE_URL = "http://localhost:8000/users";
+const BASE_URL = "https://cifo.comparteridesgg10.club/users";
 
 function login(email, password) {
   const URL = `${BASE_URL}/login/`;

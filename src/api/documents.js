@@ -1,7 +1,7 @@
 import { post, get } from "axios";
 import getFormData from "../utils/objToFormData";
 
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://cifo.comparteridesgg10.club";
 
 function getFiles({ id, access_token, search = null }) {
   let URL = `${BASE_URL}/users/${id}/documents/`;
