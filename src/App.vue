@@ -4,7 +4,10 @@
       <BaseLoading />
     </Loadlayout>
 
-    <MainLayout v-else />
+    <section v-else>
+      <MainLayout v-if="user" />
+      <AuthLayout v-else />
+    </section>
   </div>
 </template>
 
@@ -12,6 +15,7 @@
 import { mapState } from "vuex";
 import Loadlayout from "./layouts/LoadLayout";
 import MainLayout from "./layouts/MainLayout";
+import AuthLayout from "./layouts/AuthLayout";
 import BaseLoading from "@/components/BaseLoading.vue";
 
 export default {
@@ -19,11 +23,13 @@ export default {
   components: {
     MainLayout,
     Loadlayout,
+    AuthLayout,
     BaseLoading
   },
   computed: {
     // Uso: mapState(moduleName, { state })
-    ...mapState("loading", { isLoading: "isLoading" })
+    ...mapState("loading", { isLoading: "isLoading" }),
+    ...mapState("auth", { user: "user" })
   }
 };
 </script>
