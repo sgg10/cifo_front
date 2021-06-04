@@ -2,15 +2,17 @@
   <p class="text-muted m-0 pt-1 pl-3 text-left text-sm-right">
     <small>
       Made by
-      <a href="https://github.com/sgg10" target="_blank">Sebastian Granda</a>
+      <a>
+        Santiago Espinosa and Sebastian Granda
+      </a>
       for
-      <a href="https://platzi.com/" target="_blank">Platzi</a>
+      <a>Topicos Software</a>
     </small>
   </p>
 </template>
 
 <script>
 export default {
-  name: 'MadeByFoot'
-}
+  name: "MadeByFoot"
+};
 </script>

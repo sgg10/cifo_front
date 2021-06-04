@@ -39,7 +39,6 @@ export default {
           },
           this.access_token
         );
-        console.log(response);
         this.isCardLoading = false;
         this.$emit("accion", true);
       }

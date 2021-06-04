@@ -41,7 +41,7 @@ export default {
         {
           classes: ["fab", "github"],
           color: "#e4e4e4",
-          href: "https://github.com/sgg10"
+          href: "https://github.com/sgg10/cifo_front"
         },
         {
           classes: ["fab", "font-awesome"],

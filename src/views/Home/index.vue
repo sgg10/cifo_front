@@ -1,11 +1,23 @@
 <template>
   <div class="home">
     <b-row>
-      <b-col class="text-left mt-5 mx-5">
+      <b-col cols="2" class="text-center mt-5 ml-5">
         <b-button variant="success" v-b-modal.upload_modal>
           <b-icon icon="cloud-upload" aria-hidden="true"></b-icon>
           Upload file
         </b-button>
+      </b-col>
+      <b-col cols="8" class="text-left mt-5">
+        <b-input-group class="mb-2">
+          <b-input-group-prepend is-text>
+            <b-icon icon="search"></b-icon>
+          </b-input-group-prepend>
+          <b-form-input
+            v-model="search"
+            type="search"
+            placeholder="Search document"
+          ></b-form-input>
+        </b-input-group>
       </b-col>
     </b-row>
     <b-row>
@@ -18,7 +30,7 @@
       </b-col>
     </b-row>
     <b-modal id="upload_modal" title="Upload Document" @ok="upload">
-      <b-form role="form" @submit.prevent="onSubmit">
+      <b-form role="form" @submit.prevent="upload">
         <b-form-input
           v-model="title"
           class="mb-3"
@@ -56,7 +68,8 @@ export default {
       modal_loading: false,
       reload: false,
       files: [],
-      isDocumentsLoading: false
+      isDocumentsLoading: false,
+      search: ""
     };
   },
   computed: {
@@ -72,10 +85,10 @@ export default {
         },
         this.access_token
       );
+      console.log(response);
       this.modal_loading = false;
       this.title = "";
       this.file = null;
-      console.log(response);
       this.load(true);
       this.$bvModal.hide("upload_modal");
     },
@@ -83,12 +96,21 @@ export default {
     async load(event) {
       if (event) {
         this.isDocumentsLoading = true;
-        console.log(this.access_token);
         this.files = (
-          await getFiles(this.user.identification, this.access_token)
+          await getFiles({
+            id: this.user.identification,
+            access_token: this.access_token,
+            search: this.search ? this.search : null
+          })
         ).data;
         this.isDocumentsLoading = false;
       }
+    }
+  },
+
+  watch: {
+    search() {
+      this.load(true);
     }
   }
 };

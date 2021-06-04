@@ -23,7 +23,6 @@ export default {
         authentication
           .refreshToken(token)
           .then(({ data }) => {
-            console.log(data);
             commit("SET_ACCESS_TOKEN", data.access);
             if (!state.user) {
               commit("SET_USER", data.user);

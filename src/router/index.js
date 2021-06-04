@@ -28,7 +28,10 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(route => route.meta.requireAuth)) {
-    if (!store.state.auth.user) {
+    if (
+      !store.state.auth.user &&
+      !window.localStorage.getItem("refresh_token")
+    ) {
       next({ name: "Login" });
     } else {
       next();

@@ -3,8 +3,11 @@ import getFormData from "../utils/objToFormData";
 
 const BASE_URL = "http://localhost:8000";
 
-function getFiles(id, access_token) {
-  const URL = `${BASE_URL}/users/${id}/documents/`;
+function getFiles({ id, access_token, search = null }) {
+  let URL = `${BASE_URL}/users/${id}/documents/`;
+  if (search) {
+    URL = `${URL}?search=${search}`;
+  }
   const config = {
     headers: {
       "Content-Type": "application/json",
